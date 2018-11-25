@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="row">
+        <h3 class="col-sm-12">Forms</h3>
+    </div>
+    <select-form available-forms="$ctrl.availableForms" ng-model="$ctrl.forms"></select-form>
+    <div class="row">
+        <div class="col-sm-12">Selected forms: {{$ctrl.forms.join(', ')}}</div>
+    </div>
+</div>

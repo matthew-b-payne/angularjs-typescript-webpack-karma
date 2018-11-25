@@ -1,0 +1,10 @@
+{
+  "selectedForms": ["form1", "form4"],
+  "availableForms": [
+    {"name": "form1", "required": true},
+    {"name": "form2", "required": false},
+    {"name": "form3", "required": false},
+    {"name": "form4", "required": false},
+    {"name": "form5", "required": true}
+  ]
+}
