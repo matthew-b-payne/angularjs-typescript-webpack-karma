@@ -7,8 +7,7 @@ module.exports = function(config) {
             '../node_modules/angular-animate/angular-animate.js',
             '../node_modules/angular-resource/angular-resource.js',
             '../node_modules/angular-route/angular-route.js',
-            '../node_modules/angular-mocks/angular-mocks.js',
-            '**/*.+(js|ts)'
+            '**/*.+(ts|html)'
         ],
         autoWatch: true,
         frameworks: ['jasmine', 'karma-typescript'],
@@ -18,13 +17,15 @@ module.exports = function(config) {
             'karma-chrome-launcher',
             'karma-webpack',
             'karma-mocha-reporter',
-            'karma-typescript'
+            'karma-typescript',
+            'karma-ng-html2js-preprocessor'
         ],
 
         port: 9876,
         webpack: webpackConfig,
         preprocessors: {
             '**/*.+(js|ts)': ['webpack', 'karma-typescript'],
+            '**/*.html': ['ng-html2js']
         },
         browsers: ['Chrome'],
         reporters: ['mocha']
