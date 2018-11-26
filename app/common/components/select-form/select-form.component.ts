@@ -7,19 +7,18 @@ import {IForm} from "./form"
 export class SelectFormComponentController implements ng.IComponentController {
     public availableForms:IForm[];
     public selectedForms:IForm[];
-    public ngModel: any;
-    public static $inject:string[] = ["$timeout"];
+    public ngModelCtrl: any;
 
-    constructor(private $timeout:any) {
+    constructor() {
     }
 
     public $onInit() {
         let ctrl:any = this;
-        ctrl.$timeout(function () {
-            ctrl.ngModel.$render = ctrl.onChange.bind(ctrl);
-            ctrl.ngModel.$viewChangeListeners.push(ctrl.onChange.bind(ctrl));
+        ctrl.ngModelCtrl.$render = function() {
             ctrl.addRequiredForms();
-        });
+            ctrl.onChange();
+        };
+        ctrl.ngModelCtrl.$viewChangeListeners.push(ctrl.onChange.bind(ctrl));
     }
 
     addForm() {
@@ -43,7 +42,7 @@ export class SelectFormComponentController implements ng.IComponentController {
         if (!this.canDeleteLastForm()) {
             return;
         }
-        this.ngModel.$setViewValue(this.ngModel.$modelValue.slice(0, -1));
+        this.ngModelCtrl.$setViewValue(this.ngModelCtrl.$modelValue.slice(0, -1));
     }
 
     getAvailableForms(form: IForm) {
@@ -63,7 +62,7 @@ export class SelectFormComponentController implements ng.IComponentController {
                 newVal.push(form.name);
             }
         });
-        this.ngModel.$setViewValue(newVal);
+        this.ngModelCtrl.$setViewValue(newVal);
     }
 
     addRequiredForms() {
@@ -76,12 +75,12 @@ export class SelectFormComponentController implements ng.IComponentController {
             return f.name;
         });
 
-        this.ngModel.$setViewValue(_.uniq(requiredForms.concat(this.ngModel.$modelValue)));
+        this.ngModelCtrl.$setViewValue(_.uniq(requiredForms.concat(this.ngModelCtrl.$modelValue)));
     }
 
     private onChange() {
         let ctrl = this;
-        ctrl.selectedForms = _.map(ctrl.ngModel.$modelValue, function (formName: string) {
+        ctrl.selectedForms = _.map(ctrl.ngModelCtrl.$modelValue, function (formName: string) {
             return _.find(ctrl.availableForms, function (f: IForm) {
                 return f.name === formName;
             });
@@ -103,7 +102,7 @@ export class SelectFormComponent implements ng.IComponentOptions {
         this.controller = SelectFormComponentController;
         this.controllerAs = "$ctrl";
         this.require = {
-            ngModel: 'ngModel'
+            ngModelCtrl: 'ngModel'
         };
         this.bindings = {
             availableForms: '<'

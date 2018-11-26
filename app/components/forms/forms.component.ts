@@ -5,7 +5,7 @@ import {IForm} from '../../common/components/select-form/form';
 export class FormsComponentController implements ng.IComponentController {
     public availableForms: IForm[];
     public forms: string[];
-
+    public loaded: boolean = false;
     public static $inject: string[] = ["formsResource"];
 
     constructor(private formsResource: any) {}
@@ -15,6 +15,7 @@ export class FormsComponentController implements ng.IComponentController {
         ctrl.formsResource.query().$promise.then(function (response: any) {
             ctrl.forms = response.selectedForms;
             ctrl.availableForms = response.availableForms;
+            ctrl.loaded = true;
         });
     }
 }
