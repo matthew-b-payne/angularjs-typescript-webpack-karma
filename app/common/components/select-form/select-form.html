@@ -9,8 +9,8 @@
     </div>
 
     <div class="col-sm-2">
-        <button type="button" class="btn btn-default" ng-if="$last && $ctrl.canDeleteLastForm()"
+        <button type="button" id="delete-btn" class="btn btn-default" ng-if="$last && $ctrl.canDeleteLastForm()"
                 ng-click="$ctrl.deleteForm()">x</button>
-        <button type="button" class="btn btn-default" ng-if="$last && $ctrl.canAddForm()" ng-click="$ctrl.addForm()">+</button>
+        <button type="button" id="add-btn" class="btn btn-default" ng-if="$last && $ctrl.canAddForm()" ng-click="$ctrl.addForm()">+</button>
     </div>
 </div>

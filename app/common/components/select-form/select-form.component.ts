@@ -80,11 +80,18 @@ export class SelectFormComponentController implements ng.IComponentController {
 
     private onChange() {
         let ctrl = this;
-        ctrl.selectedForms = _.map(ctrl.ngModelCtrl.$modelValue, function (formName: string) {
-            return _.find(ctrl.availableForms, function (f: IForm) {
-                return f.name === formName;
+
+        ctrl.selectedForms = [];
+        if (!_.isEmpty(ctrl.ngModelCtrl.$modelValue)) {
+            _.each(ctrl.ngModelCtrl.$modelValue, function(formName) {
+                let f = _.find(ctrl.availableForms, function (f: IForm) {
+                    return f.name === formName;
+                });
+                if (!_.isUndefined(f)) {
+                    ctrl.selectedForms.push(f);
+                }
             });
-        });
+        }
         if (ctrl.selectedForms.length === 0) {
             ctrl.selectedForms.push({name: null, required: false});
         }

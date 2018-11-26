@@ -1,5 +1,5 @@
 var webpackConfig = require('./webpack.config.js');
-module.exports = function(config) {
+module.exports = function (config) {
     config.set({
         basePath: './app',
         files: [
@@ -26,6 +26,12 @@ module.exports = function(config) {
         preprocessors: {
             '**/*.+(js|ts)': ['webpack', 'karma-typescript'],
             '**/*.html': ['ng-html2js']
+        },
+        ngHtml2JsPreprocessor: {
+            prependPrefix: 'app/',
+            moduleName: function (htmlPath, originalPath) {
+                return htmlPath;
+            }
         },
         browsers: ['Chrome'],
         reporters: ['mocha']
