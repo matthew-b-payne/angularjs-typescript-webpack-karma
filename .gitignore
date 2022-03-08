@@ -2,3 +2,4 @@ node_modules/
 bundle.js
 ./.lh/**
 dist/
+.lh/angularjs-typescript-webpack-karma/.gitignore.json
