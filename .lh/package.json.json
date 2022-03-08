@@ -1,0 +1,26 @@
+{
+    "sourceFile": "package.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1646418111346,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1646418913915,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,12 +34,14 @@\n     \"html-loader\": \"^3.1.0\",\n     \"jasmine-core\": \"^3.3.0\",\n     \"karma\": \"^6.3.17\",\n     \"karma-chrome-launcher\": \"^3.1.0\",\n+    \"karma-read-json\": \"^1.1.0\",\n     \"karma-jasmine\": \"^3.0.3\",\n     \"karma-mocha-reporter\": \"^2.2.5\",\n     \"karma-ng-html2js-preprocessor\": \"^1.0.0\",\n     \"karma-requirejs\": \"^1.1.0\",\n+    \"karma-sinon\": \"^1.0.5\",\n     \"karma-sourcemap-loader\": \"^0.3.7\",\n     \"karma-typescript\": \"^5.5.3\",\n     \"karma-webpack\": \"^5.0.0\",\n     \"protractor\": \"^5.4.1\",\n"
+                },
+                {
+                    "date": 1646418933027,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,8 +33,9 @@\n     \"copy-webpack-plugin\": \"^10.2.4\",\n     \"html-loader\": \"^3.1.0\",\n     \"jasmine-core\": \"^3.3.0\",\n     \"karma\": \"^6.3.17\",\n+    \"karma-chai-plugins\": \"^0.9.0\",\n     \"karma-chrome-launcher\": \"^3.1.0\",\n     \"karma-read-json\": \"^1.1.0\",\n     \"karma-jasmine\": \"^3.0.3\",\n     \"karma-mocha-reporter\": \"^2.2.5\",\n"
+                }
+            ],
+            "date": 1646418111346,
+            "name": "Commit-0",
+            "content": "{\n  \"name\": \"app\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"webpack.config.js\",\n  \"scripts\": {\n    \"start\": \"webpack && webpack-dev-server --open\",\n    \"build\": \"webpack\",\n    \"wpw\": \"webpack  --watch\",\n    \"test\": \"karma start karma.conf.js\"\n  },\n  \"keywords\": [],\n  \"author\": \"\",\n  \"license\": \"ISC\",\n  \"dependencies\": {\n    \"angular\": \"1.7.x\",\n    \"angular-resource\": \"^1.7.5\",\n    \"angular-cookies\": \"^1.7.5\",\n    \"angular-route\": \"^1.7.5\",\n    \"angular-animate\": \"1.7.x\",\n    \"bootstrap\": \"3.3.x\",\n    \"jquery\": \"3.3.x\",\n    \"lodash\": \"4.17.11\"\n  },\n  \"devDependencies\": {\n    \"@types/angular\": \"^1.6.51\",\n    \"@types/angular-mocks\": \"^1.7.0\",\n    \"@types/angular-resource\": \"^1.5.14\",\n    \"@types/angular-route\": \"^1.7.0\",\n    \"@types/jasmine\": \"^3.3.0\",\n    \"@types/lodash\": \"^4.14.118\",\n    \"angular-mocks\": \"1.7.x\",\n    \"copy-webpack-plugin\": \"^10.2.4\",\n    \"html-loader\": \"^3.1.0\",\n    \"jasmine-core\": \"^3.3.0\",\n    \"karma\": \"^6.3.17\",\n    \"karma-chrome-launcher\": \"^3.1.0\",\n    \"karma-jasmine\": \"^3.0.3\",\n    \"karma-mocha-reporter\": \"^2.2.5\",\n    \"karma-ng-html2js-preprocessor\": \"^1.0.0\",\n    \"karma-requirejs\": \"^1.1.0\",\n    \"karma-sourcemap-loader\": \"^0.3.7\",\n    \"karma-typescript\": \"^5.5.3\",\n    \"karma-webpack\": \"^5.0.0\",\n    \"protractor\": \"^5.4.1\",\n    \"sinon\": \"13.0.1\",\n    \"ts-loader\": \"^9.2.7\",\n    \"typescript\": \"^4.5.5\",\n    \"webpack\": \"^5.66.0\",\n    \"webpack-cli\": \"^4.9.2\",\n    \"webpack-merge\": \"^5.8.0\",\n    \"webpack-dev-server\": \"^4.7.4\"\n  }\n}\n"
+        }
+    ]
+}

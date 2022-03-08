@@ -1,0 +1,50 @@
+{
+    "sourceFile": "karma.conf.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1646432162101,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1646432181799,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n             '**/*.+(js|ts|html)',\n             '**/*.spec.js',\n         ],\n         autoWatch: true,\n-        frameworks: ['jasmine'],\n+        frameworks: ['jasmine', 'chai',],\n         plugins: [\n             'karma-jasmine',\n             'karma-chai-plugins',\n             'karma-sourcemap-loader',\n"
+                },
+                {
+                    "date": 1646432206700,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n             '**/*.+(js|ts|html)',\n             '**/*.spec.js',\n         ],\n         autoWatch: true,\n-        frameworks: ['jasmine', 'chai',],\n+        frameworks: ['jasmine', 'chai','webpack'],\n         plugins: [\n             'karma-jasmine',\n             'karma-chai-plugins',\n             'karma-sourcemap-loader',\n"
+                },
+                {
+                    "date": 1646680949603,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,10 @@\n             '../node_modules/angular/angular.js',\n             '../node_modules/angular-animate/angular-animate.js',\n             '../node_modules/angular-resource/angular-resource.js',\n             '../node_modules/angular-route/angular-route.js',\n+            './data/angular/unit-test-data-module.js',\n+            './test/data/angular/**/*.js',\n             '**/*.+(js|ts|html)',\n             '**/*.spec.js',\n         ],\n         autoWatch: true,\n"
+                },
+                {
+                    "date": 1646693194135,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,11 +7,12 @@\n             '../node_modules/angular-animate/angular-animate.js',\n             '../node_modules/angular-resource/angular-resource.js',\n             '../node_modules/angular-route/angular-route.js',\n             './data/angular/unit-test-data-module.js',\n-            './test/data/angular/**/*.js',\n+            './data/angular/**/*.js',\n             '**/*.+(js|ts|html)',\n             '**/*.spec.js',\n+            '**/*.spec.ts',\n         ],\n         autoWatch: true,\n         frameworks: ['jasmine', 'chai','webpack'],\n         plugins: [\n"
+                },
+                {
+                    "date": 1646693248269,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,11 +9,11 @@\n             '../node_modules/angular-route/angular-route.js',\n             './data/angular/unit-test-data-module.js',\n             './data/angular/**/*.js',\n             '**/*.+(js|ts|html)',\n-            '**/*.spec.js',\n-            '**/*.spec.ts',\n-        ],\n+        //     '**/*.spec.js',\n+        //     '**/*.spec.ts',\n+        // ],\n         autoWatch: true,\n         frameworks: ['jasmine', 'chai','webpack'],\n         plugins: [\n             'karma-jasmine',\n"
+                },
+                {
+                    "date": 1646693490318,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,12 +8,12 @@\n             '../node_modules/angular-resource/angular-resource.js',\n             '../node_modules/angular-route/angular-route.js',\n             './data/angular/unit-test-data-module.js',\n             './data/angular/**/*.js',\n-            '**/*.+(js|ts|html)',\n-        //     '**/*.spec.js',\n-        //     '**/*.spec.ts',\n-        // ],\n+            'app/**/*.+(js|ts|html)',\n+            // '**/*.spec.js',\n+            // '**/*.spec.ts',\n+        ],\n         autoWatch: true,\n         frameworks: ['jasmine', 'chai','webpack'],\n         plugins: [\n             'karma-jasmine',\n"
+                },
+                {
+                    "date": 1646693528864,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n             '../node_modules/angular-resource/angular-resource.js',\n             '../node_modules/angular-route/angular-route.js',\n             './data/angular/unit-test-data-module.js',\n             './data/angular/**/*.js',\n-            'app/**/*.+(js|ts|html)',\n+            './app/**/*.+(js|ts|html)',\n             // '**/*.spec.js',\n             // '**/*.spec.ts',\n         ],\n         autoWatch: true,\n"
+                },
+                {
+                    "date": 1646693883004,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n             '../node_modules/angular-resource/angular-resource.js',\n             '../node_modules/angular-route/angular-route.js',\n             './data/angular/unit-test-data-module.js',\n             './data/angular/**/*.js',\n-            './app/**/*.+(js|ts|html)',\n+            '**/*.+(js|ts|html)',\n             // '**/*.spec.js',\n             // '**/*.spec.ts',\n         ],\n         autoWatch: true,\n"
+                }
+            ],
+            "date": 1646432162101,
+            "name": "Commit-0",
+            "content": "var webpackConfig = require('./webpack.config.js');\nmodule.exports = function (config) {\n    config.set({\n        basePath: './app',\n        files: [\n            '../node_modules/angular/angular.js',\n            '../node_modules/angular-animate/angular-animate.js',\n            '../node_modules/angular-resource/angular-resource.js',\n            '../node_modules/angular-route/angular-route.js',\n            '**/*.+(js|ts|html)',\n            '**/*.spec.js',\n        ],\n        autoWatch: true,\n        frameworks: ['jasmine'],\n        plugins: [\n            'karma-jasmine',\n            'karma-chai-plugins',\n            'karma-sourcemap-loader',\n            'karma-chrome-launcher',\n            'karma-webpack',\n            'karma-mocha-reporter',\n            'karma-typescript',\n            'karma-ng-html2js-preprocessor'\n        ],\n\n        port: 9876,\n        webpack: webpackConfig,\n        preprocessors: {\n            '**/*.+(js|ts)': ['webpack'],\n            '**/*.html': ['ng-html2js']\n        },\n        ngHtml2JsPreprocessor: {\n            prependPrefix: 'app/',\n            moduleName: function (htmlPath, originalPath) {\n                return htmlPath;\n            }\n        },\n        browsers: ['Chrome'],\n        reporters: ['mocha']\n    });\n};\n"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "sourceFile": "webpack.config.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1646430330767,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1646681128792,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,10 @@\n     context: __dirname + '/app',\n     entry: './app.ts',\n     output: {\n         path: __dirname + '/dist/',\n-        filename: '[name].js'\n+        filename: '[name].js',\n+        clean: true\n     },\n     devServer: {\n         static: __dirname + '/'\n     },\n"
+                }
+            ],
+            "date": 1646430330767,
+            "name": "Commit-0",
+            "content": "var webpack = require('webpack');\n\nmodule.exports = {\n    mode: 'development',\n    context: __dirname + '/app',\n    entry: './app.ts',\n    output: {\n        path: __dirname + '/dist/',\n        filename: '[name].js'\n    },\n    devServer: {\n        static: __dirname + '/'\n    },\n    resolve: {\n        extensions: ['.ts', '.js', '.json']\n    },\n    module: {\n        rules: [\n            {\n                test: /\\.ts?$/,\n                use: [\n                 {\n                    loader: 'ts-loader',\n                    options: {\n                      configFile: 'pmltsconfig.json',\n                    },\n                  }],\n                exclude: {\n                  or: [/node_modules/, /e2e/],\n                },\n              },\n            {\n                test: /\\.(html)$/,\n                use: {\n                    loader: 'html-loader'\n                }\n            }\n        ]\n    }\n};"
+        }
+    ]
+}

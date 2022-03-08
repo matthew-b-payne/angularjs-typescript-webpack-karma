@@ -1,0 +1,26 @@
+{
+    "sourceFile": "app/epay/epay-message-resolver.spec.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1646418191039,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1646418478035,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n import * as angular from 'angular'\n import * as sinon from 'sinon'\n+import * as chai from 'chai';\n \n+const expect = chai.expect\n+\n describe('EpayMessageResolver', function() {\n   var $log = {debug: sinon.stub()}\n   var epayMessageResolver\n   var authService\n"
+                },
+                {
+                    "date": 1646418548296,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,7 @@\n import * as angular from 'angular'\n import * as sinon from 'sinon'\n-import * as chai from 'chai';\n \n-const expect = chai.expect\n-\n describe('EpayMessageResolver', function() {\n   var $log = {debug: sinon.stub()}\n   var epayMessageResolver\n   var authService\n"
+                }
+            ],
+            "date": 1646418191039,
+            "name": "Commit-0",
+            "content": "import * as angular from 'angular'\nimport * as sinon from 'sinon'\n\ndescribe('EpayMessageResolver', function() {\n  var $log = {debug: sinon.stub()}\n  var epayMessageResolver\n  var authService\n\n  beforeEach(angular.mock.module('app.client.epay'))\n  beforeEach(angular.mock.module(function($provide) {\n      // use this to mock dependencies\n    $provide.factory('authService', function() {\n      return {\n        checkRoles: sinon.stub().returns(true),\n        getSubGuid: sinon.stub().returns('my-sub-guid'),\n        getSessionID: sinon.stub().returns('my-session-id'),\n        isClientView: sinon.stub().returns(false),\n        isAgentView: sinon.stub().returns(true),\n        isHomeOfficeUser: sinon.stub().returns(true),\n        isAuthenticated: sinon.stub().returns(true),\n        isAClient: sinon.stub().returns(false),\n        isARealClient: sinon.stub().returns(false),\n      }\n    })\n    $provide.value('$log', $log)\n  }))\n  beforeEach(inject(function(_epayMessageResolver_, _authService_) {\n      // use this to expose what dependencies actually resolve to\n    authService = _authService_\n    epayMessageResolver = _epayMessageResolver_\n  }))\n\n  describe('.resolvePremiumMessage', function() {\n    it('returns a message for a know typeCode', function() {\n      let msg = epayMessageResolver.resolvePremiumMessage('1')\n\n      expect(msg).to.equal('There is a pending payment')\n    })\n\n    it('does not bomb when asked about a message for an unknown code', function() {\n      let msg = epayMessageResolver.resolvePremiumMessage('98981')\n\n      expect(msg).to.be.undefined\n    })\n  })\n\n  describe('correct message when client view', function() {\n    beforeEach(inject((_epayMessageResolver_, _authService_) => {\n      authService.isClientView = sinon.stub().returns(true)\n      authService.isHomeOfficeUser = sinon.stub().returns(false)\n      epayMessageResolver.authService = authService\n      epayMessageResolver = _epayMessageResolver_\n    }))\n\n    it('no message for clientView where there is for others', function() {\n    //   expect(authService.isClientView.called).to.be.true\n      epayMessageResolver.isClientView = true\n      let msg = epayMessageResolver.resolvePremiumMessage('1')\n\n      expect(msg).to.be.undefined\n    })\n  })\n})\n"
+        }
+    ]
+}

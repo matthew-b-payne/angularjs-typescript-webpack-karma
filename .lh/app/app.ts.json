@@ -1,0 +1,50 @@
+{
+    "sourceFile": "app/app.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1646429606100,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1646429634630,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,11 +4,11 @@\n import * as cookies from \"angular-cookies\"\n import {FormsComponent} from \"./components/forms/forms.component\"\n import {SelectFormComponent} from \"./common/components/select-form/select-form.component\"\n import {Forms} from \"./common/services/forms/forms.service\"\n+import './core'\n import { LoggingService } from './utils/logging'\n import { stringUtils } from './utils/string-utils'\n-import './core'\n import './directives'\n \n import { DeviceUtils } from \"./utils\"\n \n"
+                },
+                {
+                    "date": 1646429747051,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n import { stringUtils } from './utils/string-utils'\n import './directives'\n \n import { DeviceUtils } from \"./utils\"\n+import { findOrCreateModule } from \"./ng-helpers\"\n \n let app: ng.IModule = angular.module('app', [ngResource])\n     .component('forms', new FormsComponent())\n     .component('selectForm', new SelectFormComponent())\n@@ -19,8 +20,8 @@\n Forms.init(app);\n \n // import './utils'\n \n-angular.module('app.utils', ['app'])\n+findOrCreateModule('app.utils', ['app'])\n .service('loggingService', LoggingService)\n .service('stringUtils', stringUtils)\n .factory('deviceUtils', DeviceUtils)\n"
+                },
+                {
+                    "date": 1646429813107,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n import './directives'\n \n import { DeviceUtils } from \"./utils\"\n import { findOrCreateModule } from \"./ng-helpers\"\n+import { constants } from \"./core/constants\"\n \n let app: ng.IModule = angular.module('app', [ngResource])\n     .component('forms', new FormsComponent())\n     .component('selectForm', new SelectFormComponent())\n@@ -20,8 +21,11 @@\n Forms.init(app);\n \n // import './utils'\n \n+findOrCreateModule('app.core', ['app'])\n+.constant('CONSTANTS', constants)\n+\n findOrCreateModule('app.utils', ['app'])\n .service('loggingService', LoggingService)\n .service('stringUtils', stringUtils)\n .factory('deviceUtils', DeviceUtils)\n"
+                },
+                {
+                    "date": 1646429846528,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n \n import { DeviceUtils } from \"./utils\"\n import { findOrCreateModule } from \"./ng-helpers\"\n import { constants } from \"./core/constants\"\n+import { EpayMessageResolver } from \"./epay/epay-message-resolver\"\n \n let app: ng.IModule = angular.module('app', [ngResource])\n     .component('forms', new FormsComponent())\n     .component('selectForm', new SelectFormComponent())\n@@ -28,4 +29,7 @@\n findOrCreateModule('app.utils', ['app'])\n .service('loggingService', LoggingService)\n .service('stringUtils', stringUtils)\n .factory('deviceUtils', DeviceUtils)\n+\n+findOrCreateModule('app.client.epay', ['app'])\n+    .service('epayMessageResolver', EpayMessageResolver)\n"
+                },
+                {
+                    "date": 1646430409797,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,10 @@\n Forms.init(app);\n \n // import './utils'\n \n+console.dir(constants)\n+\n findOrCreateModule('app.core', ['app'])\n .constant('CONSTANTS', constants)\n \n findOrCreateModule('app.utils', ['app'])\n"
+                },
+                {
+                    "date": 1646431405586,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,6 +32,6 @@\n .service('loggingService', LoggingService)\n .service('stringUtils', stringUtils)\n .factory('deviceUtils', DeviceUtils)\n \n-findOrCreateModule('app.client.epay', ['app'])\n+findOrCreateModule('app.client.epay', ['app', 'app.core'])\n     .service('epayMessageResolver', EpayMessageResolver)\n"
+                },
+                {
+                    "date": 1646431588826,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,6 +32,5 @@\n .service('loggingService', LoggingService)\n .service('stringUtils', stringUtils)\n .factory('deviceUtils', DeviceUtils)\n \n-findOrCreateModule('app.client.epay', ['app', 'app.core'])\n-    .service('epayMessageResolver', EpayMessageResolver)\n+\n"
+                },
+                {
+                    "date": 1646431729149,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n \n import { DeviceUtils } from \"./utils\"\n import { findOrCreateModule } from \"./ng-helpers\"\n import { constants } from \"./core/constants\"\n-import { EpayMessageResolver } from \"./epay/epay-message-resolver\"\n+import  \"./client/epay\"\n \n let app: ng.IModule = angular.module('app', [ngResource])\n     .component('forms', new FormsComponent())\n     .component('selectForm', new SelectFormComponent())\n"
+                }
+            ],
+            "date": 1646429606100,
+            "name": "Commit-0",
+            "content": "import * as angular from \"angular\"\nimport * as ngResource from \"angular-resource\"\nimport * as ngRoute from \"angular-route\"\nimport * as cookies from \"angular-cookies\"\nimport {FormsComponent} from \"./components/forms/forms.component\"\nimport {SelectFormComponent} from \"./common/components/select-form/select-form.component\"\nimport {Forms} from \"./common/services/forms/forms.service\"\nimport { LoggingService } from './utils/logging'\nimport { stringUtils } from './utils/string-utils'\nimport './core'\nimport './directives'\n\nimport { DeviceUtils } from \"./utils\"\n\nlet app: ng.IModule = angular.module('app', [ngResource])\n    .component('forms', new FormsComponent())\n    .component('selectForm', new SelectFormComponent())\n\nForms.init(app);\n\n// import './utils'\n\nangular.module('app.utils', ['app'])\n.service('loggingService', LoggingService)\n.service('stringUtils', stringUtils)\n.factory('deviceUtils', DeviceUtils)\n"
+        }
+    ]
+}

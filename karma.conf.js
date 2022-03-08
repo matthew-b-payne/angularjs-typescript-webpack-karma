@@ -7,12 +7,17 @@ module.exports = function (config) {
             '../node_modules/angular-animate/angular-animate.js',
             '../node_modules/angular-resource/angular-resource.js',
             '../node_modules/angular-route/angular-route.js',
-            '**/*.+(ts|html)'
+            './data/angular/unit-test-data-module.js',
+            './data/angular/**/*.js',
+            '**/*.+(js|ts|html)',
+            // '**/*.spec.js',
+            // '**/*.spec.ts',
         ],
         autoWatch: true,
-        frameworks: ['jasmine', 'karma-typescript'],
+        frameworks: ['jasmine', 'chai','webpack'],
         plugins: [
             'karma-jasmine',
+            'karma-chai-plugins',
             'karma-sourcemap-loader',
             'karma-chrome-launcher',
             'karma-webpack',
@@ -24,7 +29,7 @@ module.exports = function (config) {
         port: 9876,
         webpack: webpackConfig,
         preprocessors: {
-            '**/*.+(js|ts)': ['webpack', 'karma-typescript'],
+            '**/*.+(js|ts)': ['webpack'],
             '**/*.html': ['ng-html2js']
         },
         ngHtml2JsPreprocessor: {

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "app/client/epay/index.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1646431729144,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1646431729144,
+            "name": "Commit-0",
+            "content": "import { findOrCreateModule } from '../../ng-helpers'\nimport { EpayMessageResolver } from './epay-message-resolver'\nimport { EpayUIStateService } from './epay-ui-state-service'\n\nfindOrCreateModule('app.client.epay', ['app', 'app.core'])\n    .service('epayMessageResolver', EpayMessageResolver)\n    .service('epayUIState', EpayUIStateService)\n\n    /**\n     * let app = await import('./data');\nconsole.log(`The addition is: ${add(2, 3)}`);\n     */\n\n// import for side effects onplay(async () => {\n//     if (somethingIsTrue) {\n//       // import module for side effects\n//       await import('/modules/my-module.js');\n//     }\n//   })();\n\n// https://dmitripavlutin.com/ecmascript-modules-dynamic-import/\n// const { \n//     default: defaultComponent, \n//     namedExport1,\n//     namedExport2\n//   } = await import(path)"
+        }
+    ]
+}

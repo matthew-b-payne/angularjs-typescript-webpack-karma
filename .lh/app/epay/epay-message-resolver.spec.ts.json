@@ -1,0 +1,30 @@
+{
+    "sourceFile": "app/epay/epay-message-resolver.spec.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1646418913908,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1646419844186,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,15 +34,15 @@\n   describe('.resolvePremiumMessage', function() {\n     it('returns a message for a know typeCode', function() {\n       let msg = epayMessageResolver.resolvePremiumMessage('1')\n \n-      expect(msg).to.equal('There is a pending payment')\n+      expect(msg).toEqual('There is a pending payment')\n     })\n \n     it('does not bomb when asked about a message for an unknown code', function() {\n       let msg = epayMessageResolver.resolvePremiumMessage('98981')\n \n-      expect(msg).to.be.undefined\n+      expect(msg).toBeUndefined\n     })\n   })\n \n   describe('correct message when client view', function() {\n@@ -57,8 +57,8 @@\n     //   expect(authService.isClientView.called).to.be.true\n       epayMessageResolver.isClientView = true\n       let msg = epayMessageResolver.resolvePremiumMessage('1')\n \n-      expect(msg).to.be.undefined\n+      expect(msg).toBeUndefined\n     })\n   })\n })\n"
+                },
+                {
+                    "date": 1646429392472,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import * as angular from 'angular'\n+import \"angular-mocks\"\n import * as sinon from 'sinon'\n import { EpayMessageResolver } from './epay-message-resolver'\n \n describe('EpayMessageResolver', function() {\n"
+                },
+                {
+                    "date": 1646431405586,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n   var $log = {debug: sinon.stub()}\n   var epayMessageResolver: EpayMessageResolver\n   var authService\n \n-  beforeEach(angular.mock.module('app.client.epay'))\n+  beforeEach(angular.mock.module('app.client.epay', ))\n   beforeEach(angular.mock.module(function($provide) {\n       // use this to mock dependencies\n     $provide.factory('authService', function() {\n       return {\n"
+                }
+            ],
+            "date": 1646418913908,
+            "name": "Commit-0",
+            "content": "import * as angular from 'angular'\nimport * as sinon from 'sinon'\nimport { EpayMessageResolver } from './epay-message-resolver'\n\ndescribe('EpayMessageResolver', function() {\n  var $log = {debug: sinon.stub()}\n  var epayMessageResolver: EpayMessageResolver\n  var authService\n\n  beforeEach(angular.mock.module('app.client.epay'))\n  beforeEach(angular.mock.module(function($provide) {\n      // use this to mock dependencies\n    $provide.factory('authService', function() {\n      return {\n        checkRoles: sinon.stub().returns(true),\n        getSubGuid: sinon.stub().returns('my-sub-guid'),\n        getSessionID: sinon.stub().returns('my-session-id'),\n        isClientView: sinon.stub().returns(false),\n        isAgentView: sinon.stub().returns(true),\n        isHomeOfficeUser: sinon.stub().returns(true),\n        isAuthenticated: sinon.stub().returns(true),\n        isAClient: sinon.stub().returns(false),\n        isARealClient: sinon.stub().returns(false),\n      }\n    })\n    $provide.value('$log', $log)\n  }))\n  beforeEach(inject(function(_epayMessageResolver_, _authService_) {\n      // use this to expose what dependencies actually resolve to\n    authService = _authService_\n    epayMessageResolver = _epayMessageResolver_\n  }))\n\n  describe('.resolvePremiumMessage', function() {\n    it('returns a message for a know typeCode', function() {\n      let msg = epayMessageResolver.resolvePremiumMessage('1')\n\n      expect(msg).to.equal('There is a pending payment')\n    })\n\n    it('does not bomb when asked about a message for an unknown code', function() {\n      let msg = epayMessageResolver.resolvePremiumMessage('98981')\n\n      expect(msg).to.be.undefined\n    })\n  })\n\n  describe('correct message when client view', function() {\n    beforeEach(inject((_epayMessageResolver_, _authService_) => {\n      authService.isClientView = sinon.stub().returns(true)\n      authService.isHomeOfficeUser = sinon.stub().returns(false)\n      epayMessageResolver.authService = authService\n      epayMessageResolver = _epayMessageResolver_\n    }))\n\n    it('no message for clientView where there is for others', function() {\n    //   expect(authService.isClientView.called).to.be.true\n      epayMessageResolver.isClientView = true\n      let msg = epayMessageResolver.resolvePremiumMessage('1')\n\n      expect(msg).to.be.undefined\n    })\n  })\n})\n"
+        }
+    ]
+}

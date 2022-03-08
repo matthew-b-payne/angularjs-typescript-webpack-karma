@@ -1,13 +1,16 @@
+var webpack = require('webpack');
+
 module.exports = {
     mode: 'development',
     context: __dirname + '/app',
     entry: './app.ts',
     output: {
         path: __dirname + '/dist/',
-        filename: '[name].js'
+        filename: '[name].js',
+        clean: true
     },
     devServer: {
-        contentBase: __dirname + '/'
+        static: __dirname + '/'
     },
     resolve: {
         extensions: ['.ts', '.js', '.json']
@@ -15,10 +18,18 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.ts$/,
-                use: 'ts-loader',
-                exclude: /node_modules/
-            },
+                test: /\.ts?$/,
+                use: [
+                 {
+                    loader: 'ts-loader',
+                    options: {
+                      configFile: 'pmltsconfig.json',
+                    },
+                  }],
+                exclude: {
+                  or: [/node_modules/, /e2e/],
+                },
+              },
             {
                 test: /\.(html)$/,
                 use: {

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "app/core/index.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1646429793829,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1646429793829,
+            "name": "Commit-0",
+            "content": "import * as angular from 'angular'\nimport { findOrCreateModule } from '../ng-helpers'\nimport { constants } from './constants'\n\n"
+        }
+    ]
+}

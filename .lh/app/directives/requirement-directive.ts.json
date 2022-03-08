@@ -1,0 +1,18 @@
+{
+    "sourceFile": "app/directives/requirement-directive.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1646429511704,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1646429511704,
+            "name": "Commit-0",
+            "content": "\n/**\n * Renders the <training-list /> directive as a list for buttons.\n */\n export class RequirementDirective implements ng.IDirective {\n    restrict = 'A'\n    replace = false\n    scope = {\n      requirement: '=',\n      parentController: '=',\n    }\n  \n    // constructor(private authService) { }\n  \n    _reset(scope, uiState, reply?) {\n      if (!reply) reply = { done: false, sent: false }\n  \n      uiState.showTextReplyPanel = false\n      uiState.showUploadReplyPanel = false\n      uiState.showChoicePanel = false\n      uiState.showReplyButton = !reply.done && (uiState.canEnterReply || uiState.canUploadReply)\n      uiState.showReplyRow = false\n      uiState.showRepliedBadge = reply.done && reply.sent\n      scope.chosenFile = null\n      scope.invalidFileType = false\n    }\n  \n    /**\n     * AngularJS post link function use for initial configuration of instances of TrainingListDirective\n     */\n    link(scope: any, _el: ng.IAugmentedJQuery, _attrs: ng.IAttributes, _controller) {\n      const requirementsCtrl = scope.parentController ?? scope.$parent.$parent.$parent.parentController ?? scope.$parent.$parent.$parent.$parent.requirementsCtrl\n      const requirement = scope.requirement\n  \n      if (!requirement) return\n  \n      const canShowReplyButton = requirementsCtrl.showReplyButton(requirement)\n      const uiState = {\n        showReplyButton: !!canShowReplyButton && (requirement.reqStatus === 0 || requirement.reqStatus === 'Pending'),\n        canEnterReply: canShowReplyButton?.text ?? false,\n        canUploadReply: canShowReplyButton?.upload ?? true,\n        hasDetails: Boolean(requirement.requirementDetails),\n        hasResponse: Boolean(requirement.responseDocId),\n        showViewReplyButton: false,\n        showOpenDetailsButton: Boolean(requirement.requirementDetails),\n        showChoicePanel: false,\n        showTextReplyPanel: false,\n        showUploadReplyPanel: false,\n        showReplyRow: false,\n        showRepliedBadge: false,\n        reset: null,\n      }\n  \n      uiState.reset = this._reset.bind(this, scope.$parent, uiState)\n  \n      uiState.showReplyButton = uiState.showReplyButton && (uiState.canEnterReply || uiState.canUploadReply)\n      uiState.showViewReplyButton = uiState.hasResponse && !uiState.showReplyButton\n  \n      requirement.uiState = uiState\n  \n      // console.log('uiState: ', uiState)\n    }\n  \n    /**\n     * Creates an instance of TrainingsDirective, with dependencies injected.\n     */\n    static factory(): ng.IDirectiveFactory {\n  \n      const directive = () => new RequirementDirective()\n  \n      directive.$inject = []\n  \n      return directive\n    }\n  }\n\n  "
+        }
+    ]
+}
